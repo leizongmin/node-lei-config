@@ -11,9 +11,16 @@ var debug = require('debug')('lei:config');
 var config = module.exports;
 
 
-config._options = {};
-config._inited = false;
-config.env = 'production';
+config.__init = function () {
+  config._options = {};
+  config._inited = false;
+  config.env = 'production';
+};
+config.__init();
+if (process.env.TEST_MODE != 1) {
+  delete config.__init;
+}
+
 
 /**
  * init

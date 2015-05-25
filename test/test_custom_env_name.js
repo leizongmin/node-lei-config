@@ -14,36 +14,13 @@ it('default', function () {
   //------------------------------------------
 
   config.__init();
+  process.env.CUSTOM_ENV = 'development';
   
   //------------------------------------------
   
   config.init({
-    path: path.resolve(__dirname, 'config_1')
-  });
-  
-  var c = config.load();
-  should.equal(c.test.env, 'production');
-  
-  should.equal(config.get('test.env'), 'production');
-  should.deepEqual(config.get(), c);
-  
-  config.set('a.b.c', 1234567);
-  should.equal(config.get('a.b.c'), 1234567);
-  
-  should.equal(config.ns('test.env'), 'production');
-  should.equal(config.ns('a.b.c'), 1234567);
-  config.ns('a.b.e', 111111);
-  should.equal(config.ns('a.b.e'), 111111);
-  
-  //------------------------------------------
-  
-  config._inited = false;
-  process.env.NODE_ENV = 'development';
-  
-  //------------------------------------------
-  
-  config.init({
-    path: path.resolve(__dirname, 'config_1')
+    path: path.resolve(__dirname, 'config_1'),
+    envName: 'CUSTOM_ENV'
   });
   
   var c = config.load();
