@@ -1,0 +1,25 @@
+{
+  "name": "lei-config",
+  "version": "1.0.0",
+  "description": "根据环境变量加载配置文件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leizongmin/node-lei-config.git"
+  },
+  "keywords": [
+    "config"
+  ],
+  "author": "Zongmin Lei <leizongmin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leizongmin/node-lei-config/issues"
+  },
+  "homepage": "https://github.com/leizongmin/node-lei-config",
+  "dependencies": {
+    "debug": "^2.2.0"
+  }
+}
