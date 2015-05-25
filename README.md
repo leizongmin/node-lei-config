@@ -11,6 +11,8 @@ $ npm install lei-config --save
 
 ## 使用
 
+使用：
+
 ```javascript
 var config = require('lei-config');
 
@@ -23,6 +25,8 @@ config.init({
 
 // 载入并返回配置内容，如果之前没有调用config.init()，则会使用默认配置来调用config.init()
 console.log(config.load());
+// 或者手动指定环境名
+console.log(config.load('development'));
 
 // 设置配置（使用lei-ns实现）
 config.set({
@@ -35,6 +39,16 @@ config.set('b', 456);
 // 读取配置项（使用lei-ns实现）
 console.log(config.get());
 console.log(config.get('a'));
+```
+
+配置文件`production.js`：
+
+```javascript
+module.exports = function (ns) {
+  // 使用namespace来设置值，参考le-ns模块
+  ns('a.b.c', 123);
+  ns('a.y.y', 456);
+}
 ```
 
 
