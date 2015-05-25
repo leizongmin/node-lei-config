@@ -36,13 +36,21 @@ config.init = function (options) {
 };
 
 config._loadFile = function (ns, name) {
-  var f = path.resolve(config._options.path, name);
+  var f = path.resolve(config._options.path, name + '.js');
+  debug('load file: %s', f);
   require(f)(ns);
-  return ns;
 };
 
 config._loadDefaultFile = function (ns) {
-  return config._loadFile(ns, config._options.defaultName);
+  try {
+    config._loadFile(ns, config._options.defaultName);
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      debug('load default config fail: %s', err.message);
+    } else {
+      throw err;
+    }
+  }
 };
 
 /**
@@ -54,9 +62,9 @@ config._loadDefaultFile = function (ns) {
 config.load = function (env) {
   if (!config._inited) config.init();
   
-  debug('load');
   var options = config._options;
-  config.env = env = (env || process.env[options.envName] ||config.env).toString().trim();
+  debug('load: env=%s, envName=%s, process.env=%s, config.env=%s', env, options.envName,  process.env[options.envName], config.env);
+  config.env = env = (env || process.env[options.envName] || config.env).toString().trim();
   
   config.ns = createNS();
   config._loadDefaultFile(config.ns);

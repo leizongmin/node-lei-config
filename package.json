@@ -22,5 +22,9 @@
   "dependencies": {
     "debug": "^2.2.0",
     "lei-ns": "^0.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4",
+    "should": "^5.2.0"
   }
 }

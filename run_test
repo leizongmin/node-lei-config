@@ -1,0 +1,2 @@
+export DEBUG=lei:config
+mocha -t 5000
