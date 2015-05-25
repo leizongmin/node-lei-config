@@ -1,3 +1,9 @@
 export DEBUG=lei:config
 export TEST_MODE=1
-mocha -t 5000
+
+if [ $1 ]
+then
+  mocha -t 5000 test/test_$1
+else
+  mocha -t 5000
+fi

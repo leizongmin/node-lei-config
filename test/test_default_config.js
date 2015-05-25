@@ -9,21 +9,23 @@ var should = require('should');
 var config = require('../');
 
 
-it('default', function () {
+it('default_config', function () {
   
   //------------------------------------------
 
-  config.__init();
+  config._init_module();
+  delete process.env.NODE_ENV;
   
   //------------------------------------------
   
   config.init({
-    path: path.resolve(__dirname, 'config_1')
+    path: path.resolve(__dirname, 'config_2')
   });
   
   var c = config.load();
   should.equal(c.test.env, 'production');
-  
+
+  should.equal(config.get('test.default'), 'default');
   should.equal(config.get('test.env'), 'production');
   should.deepEqual(config.get(), c);
   
@@ -37,18 +39,20 @@ it('default', function () {
   
   //------------------------------------------
   
-  config._inited = false;
+  config._init_module();
   process.env.NODE_ENV = 'development';
   
   //------------------------------------------
   
   config.init({
-    path: path.resolve(__dirname, 'config_1')
+    path: path.resolve(__dirname, 'config_2'),
+    defaultName: 'custom_default'
   });
   
   var c = config.load();
   should.equal(c.test.env, 'development');
   
+  should.equal(config.get('test.default'), 'custom_default');
   should.equal(config.get('test.env'), 'development');
   should.deepEqual(config.get(), c);
   
