@@ -1,6 +1,6 @@
 /**
  * lei-config
- * 
+ *
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
@@ -25,7 +25,7 @@ if (process.env.TEST_MODE != 1) {
 
 /**
  * init
- * 
+ *
  * @param {Object} options
  */
 config.init = function (options) {
@@ -63,27 +63,37 @@ config._loadDefaultFile = function (ns) {
 
 /**
  * load
- * 
+ *
  * @param {String} env
  * @return {Object}
  */
 config.load = function (env) {
   if (!config._inited) config.init();
-  
+
   var options = config._options;
   debug('load: env=%s, envName=%s, process.env=%s, config.env=%s', env, options.envName,  process.env[options.envName], config.env);
   config.env = env = (env || process.env[options.envName] || config.env).toString().trim();
-  
+
   config.ns = createNS();
   config._loadDefaultFile(config.ns);
   config._loadFile(config.ns, config.env);
-  
+
   return config.get();
 };
 
 /**
+ * has
+ *
+ * @param {String} name
+ * @return {Boolean}
+ */
+config.has = function (name) {
+  return (typeof config.get(name) !== 'undefined');
+};
+
+/**
  * get
- * 
+ *
  * @param {String} name
  * @return {Object}
  */
@@ -94,10 +104,10 @@ config.get = function (name) {
     return config.ns();
   }
 };
- 
+
 /**
  * set
- * 
+ *
  * @param {String} name
  * @param {Object} value
  * @return {Object}
