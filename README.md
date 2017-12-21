@@ -1,4 +1,6 @@
 # lei-config
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/leizongmin/node-lei-config.svg)](https://greenkeeper.io/)
 根据环境变量加载配置文件
 
 
