@@ -20,11 +20,11 @@
   },
   "homepage": "https://github.com/leizongmin/node-lei-config",
   "dependencies": {
-    "debug": "^2.2.0",
-    "lei-ns": "^0.1.2"
+    "debug": "^3.1.0",
+    "lei-ns": "^0.4.1"
   },
   "devDependencies": {
-    "mocha": "^2.2.4",
-    "should": "^5.2.0"
+    "mocha": "^4.0.1",
+    "should": "^13.1.3"
   }
 }
